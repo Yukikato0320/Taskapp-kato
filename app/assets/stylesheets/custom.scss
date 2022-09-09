@@ -52,6 +52,18 @@ p {
 
 /* ヘッダー */
 
+#header {
+  background-color: teal;
+}
+
+li .header-list {
+  color: #fff !important;
+  font-weight: bolder;
+  &:hover {
+   color: #C0C0C0 !important;
+  }
+}
+
 #logo {
   float: left;
   margin-right: 10px;
@@ -62,11 +74,10 @@ p {
   padding-top: 9px;
   font-weight: bold;
   font-style: italic;
-}
-
-#logo:hover {
-  color: #c0c0c0;
-  text-decoration: none;
+  &:hover {
+   color: #C0C0C0;
+   text-decoration: none;
+  }
 }
 
 /* デバッグウインドウ */
@@ -98,6 +109,3 @@ p {
   }
 }
 
-#header {
-  background-color: teal;
-}
