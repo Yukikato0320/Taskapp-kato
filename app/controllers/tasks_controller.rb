@@ -15,9 +15,17 @@ class TasksController < ApplicationController
   end
   
   def create
+    
   end
   
   def edit
   end
+  
+  def destroy
+    @user = User.find(params[:user_id])
+    @task.destroy
+    redirect_to user_tasks_url @user
+  end
+  
   
 end
