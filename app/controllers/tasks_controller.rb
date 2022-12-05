@@ -7,6 +7,7 @@ class TasksController < ApplicationController
   
   def show 
     @user = User.find(params[:user_id])
+    @task = Task.find(params[:id])
   end
   
   def new
@@ -15,10 +16,14 @@ class TasksController < ApplicationController
   end
   
   def create
-    
+    @task = Task.new(content: params[:content] ,user_id: params[:user_id])
+    @task.save
+    redirect_to user_tasks_url
   end
   
   def edit
+    @user = User.find(params[:user_id])
+    @task = Task.find(params[:id])
   end
   
   def destroy
