@@ -16,9 +16,13 @@ class TasksController < ApplicationController
   end
   
   def create
-    @task = Task.new(content: params[:content] ,user_id: params[:user_id])
-    @task.save
-    redirect_to user_tasks_url
+    @task = @user.tasks.build(task_params)
+    if @task.save
+      flash[:success] = "タスクを新規作成しました。"
+      redirect_to user_tasks_url @user
+    else
+      render :new
+    end
   end
   
   def edit
@@ -30,6 +34,12 @@ class TasksController < ApplicationController
     @user = User.find(params[:user_id])
     @task.destroy
     redirect_to user_tasks_url @user
+  end
+  
+  private
+  
+  def task_params
+    params.require(:task).permit(:name, :description) 
   end
   
   
