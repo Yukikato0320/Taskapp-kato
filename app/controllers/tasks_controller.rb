@@ -55,5 +55,18 @@ class TasksController < ApplicationController
     params.require(:task).permit(:name, :description) 
   end
   
+  def set_user
+    @user = User.find(params[:user_id])
+  end
+
+  def set_task
+    @user = User.find(params[:user_id])
+    @task = Task.find(params[:id])
+    unless @task = @user.tasks.find_by(id: params[:id])
+        flash[:danger] = "権限がありません。"
+        redirect_to user_tasks_url @user
+    end
+  end
+  
   
 end
