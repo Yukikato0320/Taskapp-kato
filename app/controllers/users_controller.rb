@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :show, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: [:index, :destroy]
-  
+  before_action :admin_or_correct, only: [:show]
   
   def index
    @users = User.paginate(page: params[:page], per_page: 20)
